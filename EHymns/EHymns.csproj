@@ -71,6 +71,9 @@
       </EmbeddedResource>
     </ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Plugin.CurrentActivity">
+			<Version>2.1.0.4</Version>
+		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.59" />
 		<PackageReference Include="Syncfusion.Blazor.Calendars" Version="20.1.0.59" />
