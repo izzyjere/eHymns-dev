@@ -15,7 +15,7 @@ namespace EHymns.Data
 
             await SecureStorage.SetAsync("language", language);
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Database)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream($"EHymns.Shared.Data.{language}.json");
+            Stream stream = assembly.GetManifestResourceStream($"EHymns.Data.{language}.json");
 
             using (var reader = new StreamReader(stream))
             {
@@ -34,7 +34,7 @@ namespace EHymns.Data
                 await SecureStorage.SetAsync("language", language);
             }
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Database)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream($"EHymns.Shared.Data.{language}.json");
+            Stream stream = assembly.GetManifestResourceStream($"EHymns.Data.{language}.json");
             using var reader = new StreamReader(stream);
             Data = await reader.ReadToEndAsync();
 

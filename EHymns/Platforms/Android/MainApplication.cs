@@ -12,7 +12,7 @@ public class MainApplication : MauiApplication
     public MainApplication(IntPtr handle, JniHandleOwnership ownership)
         : base(handle, ownership)
     {
-    }
+    }     
     public void OnActivityResumed(Activity activity)
     {
         CrossCurrentActivity.Current.Activity = activity;
