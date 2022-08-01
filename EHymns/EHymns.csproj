@@ -48,13 +48,27 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
-
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Calendars" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Grid" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Notifications" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Cards" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Layouts" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Navigations" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Spinner" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Themes" Version="20.1.0.59" />
+	</ItemGroup>
     <ItemGroup>
       <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
       <None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
       <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
       <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
       <None Include="wwwroot\css\open-iconic\README.md" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Interfaces\" />
     </ItemGroup>
 
 </Project>
