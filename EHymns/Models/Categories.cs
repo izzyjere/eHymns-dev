@@ -1,3 +1,5 @@
+global using Newtonsoft.Json;
+
 namespace EHymns.Models
 {
 
