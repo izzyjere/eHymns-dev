@@ -1,8 +1,5 @@
 ﻿using Android.App;
-using Android.OS;
 using Android.Runtime;
-
-using Plugin.CurrentActivity;
 
 namespace EHymns.Platforms.Android;
 

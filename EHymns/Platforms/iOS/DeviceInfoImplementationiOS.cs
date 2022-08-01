@@ -11,10 +11,10 @@ using UIKit;
 
 
 
-[assembly: Dependency(typeof(DeviceInfoImplementationiOS))]
-namespace EHymns.Platforms.iOS
+
+namespace EHymns.Interfaces
 {
-    public class DeviceInfoImplementationiOS : EHymns.Interfaces.IDeviceInfo
+    public class DeviceInfoImplementation : EHymns.Interfaces.IMyDeviceInfo
     {
         public bool IsWhatsAppInstalled()
         {

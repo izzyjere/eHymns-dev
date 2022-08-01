@@ -121,11 +121,11 @@ else
     List<Hymn> searchResults = new();
     bool enable = true;
     string searchString = "";
-    private ISpeechToText _speechRecongnitionInstance;
+ 
     protected override async Task OnInitializedAsync()
     {
         await Refresh();
-        _speechRecongnitionInstance = DependencyService.Get<ISpeechToText>();
+       
         MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
            {
                SpeechToTextFinalResultRecieved(args);
@@ -171,7 +171,7 @@ else
     {
         try
         {
-            _speechRecongnitionInstance.StartSpeechToText();
+            speechToText.StartSpeechToText();
         }
         catch
         {

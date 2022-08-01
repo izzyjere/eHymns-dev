@@ -1,25 +1,12 @@
-﻿using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Content.PM;
 
 using EHymns.Platforms.Android;
-using EHymns.Shared;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Application = Android.App.Application;
 
-[assembly: Dependency(typeof(DeviceInfoImplentation))]
-namespace EHymns.Platforms.Android
+namespace EHymns.Interfaces
 {
-    public class DeviceInfoImplentation : EHymns.Interfaces.IDeviceInfo
+    public class DeviceInfoImplentation : EHymns.Interfaces.IMyDeviceInfo
     {
         public bool IsWhatsAppInstalled()
         {

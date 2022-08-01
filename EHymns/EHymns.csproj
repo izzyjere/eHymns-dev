@@ -95,10 +95,7 @@
 		<None Include="wwwroot\css\open-iconic\README.md" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
-		<PackageReference Include="Plugin.CurrentActivity">
-			<Version>2.1.0.4</Version>
-		</PackageReference>
-		<PackageReference Include="Xamarin.Google.Guava.ListenableFuture" ExcludeAssets="build;buildTransitive">
+	    <PackageReference Include="Xamarin.Google.Guava.ListenableFuture" ExcludeAssets="build;buildTransitive">
 			<Version>1.0.0.5</Version>
 		</PackageReference>
 	</ItemGroup>

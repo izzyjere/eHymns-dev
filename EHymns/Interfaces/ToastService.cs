@@ -13,13 +13,13 @@ namespace EHymns.Interfaces
 
             var snackbarOptions = new SnackbarOptions
             {
-                BackgroundColor = Colors.Red,
-                TextColor = Colors.Green,
+                BackgroundColor = Colors.Green,
+                TextColor = Colors.White,
                 ActionButtonTextColor = Colors.Yellow,
                 CornerRadius = new CornerRadius(10),
                 Font = Font.SystemFontOfSize(14),
-                ActionButtonFont = Font.SystemFontOfSize(14),
-                CharacterSpacing = 0.5
+                ActionButtonFont = Font.SystemFontOfSize(14)
+                
             };            
            
            

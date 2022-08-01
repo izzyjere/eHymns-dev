@@ -16,10 +16,9 @@ using System.Text;
 using UIKit;
 
 
-[assembly:Dependency(typeof(SpeechToTextiOS))]
-namespace EHymns.Platforms.iOS
+namespace EHymns.Interfaces
 {
-    public class SpeechToTextiOS : ISpeechToText
+    public class SpeechToText : ISpeechToText
     {
         private AVAudioEngine _audioEngine = new AVAudioEngine();
         private SFSpeechRecognizer _speechRecognizer = new SFSpeechRecognizer();
@@ -28,7 +27,7 @@ namespace EHymns.Platforms.iOS
         private string _recognizedString;
         private NSTimer _timer;
         private bool isNotContinious;
-        public SpeechToTextiOS()
+        public SpeechToText()
         {
             AskForSpeechPermission();
         }

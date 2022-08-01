@@ -141,12 +141,12 @@ else
     List<Hymn> songs = new();
     bool enable = true;
     string searchString = "";
-    private ISpeechToText _speechRecongnitionInstance;
+
     protected override async Task OnInitializedAsync()
     {
         await Refresh();
         language = await SecureStorage.GetAsync("language");
-        _speechRecongnitionInstance = DependencyService.Get<ISpeechToText>();
+
         MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
            {
                SpeechToTextFinalResultRecieved(args);
@@ -188,11 +188,11 @@ else
     {
         try
         {
-            _speechRecongnitionInstance.StartSpeechToText();
+            speechToText.StartSpeechToText();
         }
-        catch
+        catch(Exception ex)
         {
-
+            ToastService.Show(ex.Message);
         }
         if (Microsoft.Maui.Devices.DeviceInfo.Platform == Microsoft.Maui.Devices.DevicePlatform.iOS)
         {

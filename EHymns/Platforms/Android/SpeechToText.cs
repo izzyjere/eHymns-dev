@@ -1,33 +1,14 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Speech.Tts;
+﻿using Android.Content;
 using Android.Speech;
-using Android.Views;
-using Android.Widget;
-using EHymns.Shared;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Plugin.CurrentActivity;
 using EHymns.Platforms.Android;
 using EHymns.Interfaces;
 
-[assembly: Dependency(typeof(SpeechToTextDroid))]
-namespace EHymns.Platforms.Android
-{
-    public class SpeechToTextDroid : ISpeechToText
-    {
-        private readonly int VOICE = 10;
-        private Activity _activity;
-        public SpeechToTextDroid()
-        {
-            _activity = CrossCurrentActivity.Current.Activity;
-        }
 
+namespace EHymns.Interfaces
+{
+    public class SpeechToText : ISpeechToText
+    {
+        private readonly int VOICE = 10;      
 
 
         public void StartSpeechToText()
@@ -51,7 +32,8 @@ namespace EHymns.Platforms.Android
                 voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-                _activity.StartActivityForResult(voiceIntent, VOICE);
+                
+                Platform.CurrentActivity.StartActivityForResult(voiceIntent, VOICE);
             }
         }
 
