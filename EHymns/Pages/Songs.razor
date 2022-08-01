@@ -9,7 +9,7 @@
         <div class="form">
             <i class="oi oi-magnifying-glass"></i>
             <input @oninput="(e)=>OnSearch(e)" type="text" class="form-control form-input" placeholder="Search any song...">
-             <span class="left-pan">
+            <span class="left-pan">
                 <button @onclick="VoiceSearch" class="btn-trans" disabled="@(!enable)"> <i class="oi oi-microphone"></i></button>
             </span>
         </div>
@@ -44,24 +44,27 @@
 }
 else
 {
-    if ((!searchResults.Any()) && isSearching)
-    {
+     <div style="height:100vh; overflow:auto" class="mt-3 container">
+        @if ((!searchResults.Any()) && isSearching)
+        {
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             No results found
             <button @onclick="Refresh" type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="True">&times;</span>
             </button>
         </div>
-    }
-
+        }
+    </div>
 }
 @if (!isSearching && !searchResults.Any() && !viewSearchData)
 {
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        No favourite songs found.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="True">&times;</span>
-        </button>
+     <div style="height:100vh; overflow:auto" class="mt-3 container">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            No favourite songs found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="True">&times;</span>
+            </button>
+        </div>
     </div>
 }
 
@@ -121,11 +124,11 @@ else
     List<Hymn> searchResults = new();
     bool enable = true;
     string searchString = "";
- 
+
     protected override async Task OnInitializedAsync()
     {
         await Refresh();
-       
+
         MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
            {
                SpeechToTextFinalResultRecieved(args);
@@ -163,8 +166,8 @@ else
     }
     private void SpeechToTextFinalResultRecieved(string args)
     {
-        OnSearch(new Microsoft.AspNetCore.Components.ChangeEventArgs() { Value = args });          
-        StateHasChanged(); 
+        OnSearch(new Microsoft.AspNetCore.Components.ChangeEventArgs() { Value = args });
+        StateHasChanged();
 
     }
     void VoiceSearch()

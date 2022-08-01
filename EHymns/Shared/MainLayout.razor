@@ -31,9 +31,9 @@
             </SfToolbar>
         </div>
     </div>
-    <SfSidebar Target="@Target" HtmlAttributes="@HtmlAttribute" ID="Sidebar" Type="SidebarType.Auto" Width="260px" @ref="Sidebar" @bind-IsOpen="SidebarToggle">
+    <SfSidebar Target="@Target"  HtmlAttributes="@HtmlAttribute" ID="Sidebar" Type="SidebarType.Auto" Width="260px" @ref="Sidebar" @bind-IsOpen="SidebarToggle">
         <ChildContent>
-            <div>
+            <div >
                 <NavMenu />
             </div>
         </ChildContent>
@@ -124,6 +124,7 @@
 
     .main-content {
         padding: 2rem;
+        min-height:100hv;
     }
 
     .e-bigger .e-tbar-btn .tb-icons {
@@ -191,7 +192,7 @@
     }
 
     .scroller {
-        height: 100vh;
+        min-height: 700px;
         overflow-y: auto;
         width: 287px;
     }
@@ -215,6 +216,7 @@
 
     .sidebar {
         width: 300px;
+        min-height:100vh;
         min-width: 300px;
         background-color:transparent;
     }
@@ -232,7 +234,9 @@
         color: #ffffff;
     }
 
-
+    .default-sidebar{
+        min-height:700px;
+    }
 
     @@font-face {
         font-family: 'e-icons';
@@ -250,7 +254,9 @@
     public string Target = ".main-content";
     Dictionary<string, object> HtmlAttribute = new Dictionary<string, object>()
     {
-        { "class", "default-sidebar" }
+        { "class", "default-sidebar" },
+        { "style", "min-height:100hv !important; z-index:99999; width:240px" },
+
     };
     public bool SidebarToggle = false;
     public bool SidebarToggleFixed = false;
