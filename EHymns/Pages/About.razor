@@ -30,15 +30,14 @@
 @code{
     void WaMe()
     {   
-        var deviceInfo = DependencyService.Get<IDeviceInfo>();
-        var toast = DependencyService.Get<IToastService>();
+        var deviceInfo = DependencyService.Get<IDeviceInfo>();      
         if (deviceInfo.IsWhatsAppInstalled())
         {
             Navigation.NavigateTo("https://api.whatsapp.com/send?phone=260960715005");
         }
         else
         {
-            toast.Show("WhatsApp is not installed");
+            ToastService.Show("WhatsApp is not installed");
         }
     }
 }

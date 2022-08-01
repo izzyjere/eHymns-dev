@@ -8,7 +8,7 @@ namespace EHymns.Data
 {
     public static class Database
     {
-        static IToastService toastService = DependencyService.Get<IToastService>();
+       
         static string Data { get; set; }
         public static async Task ChangeLanguage(string language)
         {
@@ -21,7 +21,7 @@ namespace EHymns.Data
             {
                 Data = await reader.ReadToEndAsync();
             }
-            toastService.Show($"Language changed to {language}");
+            ToastService.Show($"Language changed to {language}");
 
         }
         public static async Task Initialize()
@@ -73,7 +73,7 @@ namespace EHymns.Data
             }
             list.Add(hymn);
             await SecureStorage.SetAsync("favourites", JsonConvert.SerializeObject(list));
-            toastService.Show("Song was added to favourites");
+            ToastService.Show("Song was added to favourites");
         }
         public static async Task<HashSet<Hymn>> GetFavourites()
         {
@@ -95,7 +95,7 @@ namespace EHymns.Data
             }
             list.Remove(list.FirstOrDefault(h => h.Number == hymn.Number));
             await SecureStorage.SetAsync("favourites", JsonConvert.SerializeObject(list));
-            toastService.Show("Song was removed from favourites");
+            ToastService.Show("Song was removed from favourites");
         }
         public static async Task<HashSet<Hymn>> GetHymns()
         {

@@ -13,17 +13,11 @@ public class MainApplication : MauiApplication
         : base(handle, ownership)
     {
     }     
-    public void OnActivityResumed(Activity activity)
-    {
-        CrossCurrentActivity.Current.Activity = activity;
-    }
+ 
     protected override MauiApp CreateMauiApp()
     {
         return MauiProgram.CreateMauiApp();
     }
-    public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
-    {
-        CrossCurrentActivity.Current.Activity = activity;
-    }
+   
 
 }

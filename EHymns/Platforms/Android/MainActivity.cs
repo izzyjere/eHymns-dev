@@ -13,10 +13,16 @@ namespace EHymns.Platforms.Android;
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
 public class MainActivity : MauiAppCompatActivity ,IMessageSender
 {
-    protected override void OnCreate(Bundle savedInstanceState)
+    protected override void OnStart()
     {
-        CrossCurrentActivity.Current.Init(this, savedInstanceState);
-        base.OnCreate(savedInstanceState);  
+        
+        CrossCurrentActivity.Current.Activity = this;
+        base.OnStart();
+    }
+    protected override void OnResume()
+    {
+        CrossCurrentActivity.Current.Activity = this;
+        base.OnResume();    
     }
     private readonly int VOICE = 10;
     protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)

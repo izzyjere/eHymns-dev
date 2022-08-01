@@ -161,7 +161,7 @@ else
         }
         await Database.RemoveFromFavorites(item); await Refresh();
     }
-    private async void SpeechToTextFinalResultRecieved(string args)
+    private void SpeechToTextFinalResultRecieved(string args)
     {
         OnSearch(new Microsoft.AspNetCore.Components.ChangeEventArgs() { Value = args });          
         StateHasChanged(); 
