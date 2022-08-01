@@ -1,13 +1,4 @@
-﻿/* Unmerged change from project 'EHymns (net6.0-ios)'
-Before:
-using EHymns.Interfaces;
-After:
-using EHymns.Interfaces;
-using EHymns;
-using EHymns.Shared;
-using EHymns.Shared.Data;
-using EHymns.Data;
-*/
+﻿
 using EHymns.Interfaces;
 using EHymns.Models;
 

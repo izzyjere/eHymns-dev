@@ -1,0 +1,95 @@
+﻿@page "/sing/{songId}"
+@using EHymns.Data
+@using EHymns.Models
+@using Microsoft.JSInterop
+@using Syncfusion.Blazor.Cards
+@using Syncfusion.Blazor.Popups
+@using TooltipPosition = Syncfusion.Blazor.Popups.Position
+@inject IJSRuntime javaScript
+<SfButton OnClick='()=>Navigation.NavigateTo("/")' CssClass="e-btn e-outline e-warning">Back</SfButton>
+<div class="card bg-light mb-3 mt-3" style="max-width: 100%;min-width:100%;max-height:700px;overflow:auto">
+    <div class="card-header">Song: @Model.Number</div>
+    <div class="card-body">
+        <h5 style="text-align: center;" class="card-title">@Model.Title</h5>
+
+        <SfCard ID="@Model.Number">
+            <CardContent>
+                <ChildContent>
+                    <p class="card-text song-content">
+                        @if (expand)
+                        {
+                            @foreach (var verse in Model.Verses)
+                            {
+                                @verse <br />
+
+                                <br />
+                            }
+                            @if(!string.IsNullOrWhiteSpace(Model.Chorus))
+                            {
+                               <h6 style="text-align: center;">Chorus</h6> 
+                                @Model.Chorus <br />
+
+                                <br />
+                            }
+                        }
+                    </p>
+                </ChildContent>
+            </CardContent>
+            <CardFooter>
+                <CardFooterContent>
+                    <div class="d-flex flex-row m-3">
+                        <SfButton @onclick="async ()=> expand=!expand" CssClass="e-btn e-outline e-primary mr-2">@(expand?"Collapse":"Expand")</SfButton>
+
+                        <SfTooltip Position="TooltipPosition.BottomCenter" Content="Added to your favourites.">
+                            <SfButton @onclick="AddToFavorites" CssClass="e-btn e-outline e-danger"><i class="oi oi-heart mr-2"></i>Favourite</SfButton>
+                        </SfTooltip>
+                    </div>
+                </CardFooterContent>
+            </CardFooter>
+        </SfCard>
+    </div>
+</div>
+
+@code {
+    Hymn Model { get; set; } = new();
+    [Parameter] public string SongId { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        Model = await Database.GetHymn(SongId);
+        if (Model == null)
+        {
+            Navigation.NavigateTo("/");
+        }
+    }
+    string audiotag = System.IO.Path.GetRandomFileName().Replace(".", "_");
+    bool expand, playing;
+    async Task PlayAudio()
+    {
+
+        if (playing)
+        {
+            await javaScript.InvokeVoidAsync("pauseAudio", audiotag);
+        }
+        else
+        {
+            await javaScript.InvokeVoidAsync("playAudio", audiotag);
+        }
+        playing = !playing;
+        StateHasChanged();
+    }
+    async Task AddToFavorites()
+    {
+        await Database.AddToFavorites(Model);
+    }
+}
+<style>
+
+    .song-content {
+        text-align: center;
+        line-height: normal;
+        text-justify: inter-character;
+        margin: 2em;
+        font-size: medium;
+    }
+   
+</style>

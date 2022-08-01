@@ -48,6 +48,28 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Data\bemba.json" />
+      <Content Remove="Data\english.json" />
+      <Content Remove="Data\kaonde.json" />
+      <Content Remove="Data\lozi.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Data\bemba.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data\english.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data\kaonde.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data\lozi.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.59" />
@@ -61,6 +83,10 @@
 		<PackageReference Include="Syncfusion.Blazor.Themes" Version="20.1.0.59" />
 	</ItemGroup>
     <ItemGroup>
+      <None Include="Pages\Index.razor" />
+      <None Include="Shared\MainLayout.razor" />
+      <None Include="Shared\NavMenu.razor" />
+      <None Include="Shared\SurveyPrompt.razor" />
       <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
       <None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
       <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />

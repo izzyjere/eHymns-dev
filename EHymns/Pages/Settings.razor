@@ -1,0 +1,94 @@
+﻿@page "/settings"
+@using EHymns.Shared.Data
+<div class="container">   
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            <h2 class="h3 mb-4 page-title">Language</h2>
+            <div class="my-4">
+                <div class="list-group mb-5 shadow">
+                    <div @onclick='()=>SetLingua("english")' class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-2">English</strong>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <SfRadioButton Name="language" Value="english" @bind-Checked="@checkedValue"></SfRadioButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div @onclick='()=>SetLingua("bemba")' class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-2">Bemba</strong>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <SfRadioButton Name="language" Value="bemba" @bind-Checked="@checkedValue"></SfRadioButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div @onclick='()=>SetLingua("kaonde")' class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-2">Kaonde</strong>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <SfRadioButton Name="language" Value="kaonde" @bind-Checked="@checkedValue"></SfRadioButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div @onclick='()=>SetLingua("lozi")' class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-2">Nkoya, Mbunda, Lozi</strong>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <SfRadioButton Name="language" Value="lozi" @bind-Checked="@checkedValue"></SfRadioButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <SfButton OnClick='()=>Navigation.NavigateTo("/")' CssClass="e-btn e-outline e-success">Back</SfButton>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .container {
+        margin-top: 20px;
+        color: #8e9194;
+        background-color: #f4f6f9;
+    }
+
+    .text-muted {
+        color: #aeb0b4 !important;
+    }
+
+    .text-muted {
+        font-weight: 300;
+    }
+</style>
+@code {
+    private string checkedValue = "";
+    protected override async Task OnInitializedAsync()
+    {
+        await Reload();
+    }
+    async Task Reload()
+    {
+        checkedValue = await SecureStorage.GetAsync("language");
+    }
+    async Task SetLingua(string value)
+    {
+        checkedValue = value;
+        await Database.ChangeLanguage(value);
+        await Reload();       
+    }
+}
