@@ -13,14 +13,6 @@
 	<array>
 		<string>arm64</string>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>whatsapp</string>
-	</array>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Allows you create tasks</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allows you to recognise your voice to create tasks</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
