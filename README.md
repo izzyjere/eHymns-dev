@@ -1,6 +1,6 @@
 # EHymns
 
-An Christian  Hymn Book Mobile App build Using .NET MAUI BLAZOR HYBRID
+A Christian  Hymn Book Mobile App built Using .NET MAUI BLAZOR HYBRID
 
 # How to Build
 
