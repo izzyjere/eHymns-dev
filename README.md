@@ -1,7 +1,11 @@
 # EHymns
 
 An Christian  Hymn Book Mobile App build Using .NET MAUI BLAZOR HYBRID
-#How to Build
+
+# How to Build
+
 Requires Visual Studio 2022 With .NET MAUI Workload Installed.
-#Languages
+
+# Languages
+
 Emglish, Bemba, Lozi, Kaonde, Mbunda.
