@@ -1,3 +1,3 @@
 # EHymns
 
-An Christian  Hymn Book Mobile App build Using Xamarin.Forms & Blazor
+An Christian  Hymn Book Mobile App build Using .NET MAUI BLAZOR HYBRID
