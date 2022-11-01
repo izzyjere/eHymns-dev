@@ -23,7 +23,7 @@ public static class MauiProgram
 
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddSingleton<ISpeechToText, SpeechToText>();
-        builder.Services.AddSingleton<IMyDeviceInfo, DeviceInfoImplentation>();
+        builder.Services.AddSingleton<IMyDeviceInfo, DeviceInfoImplementation>();
 
 
         builder.Services.AddSyncfusionBlazor();

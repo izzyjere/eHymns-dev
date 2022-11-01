@@ -29,6 +29,7 @@
 		<!--SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion-->
 		<!--TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion-->
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Platforms>AnyCPU;ARM32</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -73,14 +74,10 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.59" />
-		<PackageReference Include="Syncfusion.Blazor.Calendars" Version="20.1.0.59" />
-		<PackageReference Include="Syncfusion.Blazor.Grid" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.59" />		
 		<PackageReference Include="Syncfusion.Blazor.Notifications" Version="20.1.0.59" />
 		<PackageReference Include="Syncfusion.Blazor.Cards" Version="20.1.0.59" />
-		<PackageReference Include="Syncfusion.Blazor.Layouts" Version="20.1.0.59" />
-		<PackageReference Include="Syncfusion.Blazor.Navigations" Version="20.1.0.59" />
-		<PackageReference Include="Syncfusion.Blazor.Spinner" Version="20.1.0.59" />
+		<PackageReference Include="Syncfusion.Blazor.Navigations" Version="20.1.0.59" />		
 		<PackageReference Include="Syncfusion.Blazor.Themes" Version="20.1.0.59" />
 	</ItemGroup>
 	<ItemGroup>
@@ -98,6 +95,9 @@
 	    <PackageReference Include="Xamarin.Google.Guava.ListenableFuture" ExcludeAssets="build;buildTransitive">
 			<Version>1.0.0.5</Version>
 		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="NewFolder\" />
 	</ItemGroup>
 
 </Project>
