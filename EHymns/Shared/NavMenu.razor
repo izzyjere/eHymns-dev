@@ -40,22 +40,22 @@
     }
 </style>
 @code {
-    private bool collapseNavMenu = true;
+private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    async void Exit()
+private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+async void Exit()
+{
+    var accept = await Application.Current.MainPage.DisplayAlert("Exit","Close the application?",accept:"Yes",cancel:"No");
+    if(!accept)
     {
-        var accept = await Application.Current.MainPage.DisplayAlert("Exit","Close the application?",accept:"Yes",cancel:"No");
-        if(!accept)
-        {
-            return;
-        }
-        Application.Current.Quit();
+        return;
     }
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+    Application.Current.Quit();
+}
+private void ToggleNavMenu()
+{
+    collapseNavMenu = !collapseNavMenu;
+}
    
 }
 

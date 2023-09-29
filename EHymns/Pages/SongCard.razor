@@ -17,21 +17,21 @@
                 <ChildContent>
                     <p class="card-text song-content">
                         @if (expand)
+                    {
+                        @foreach (var verse in Model.Verses)
                         {
-                            @foreach (var verse in Model.Verses)
-                            {
-                                @verse <br />
+                            @verse <br />
 
-                                <br />
-                            }
-                            @if(!string.IsNullOrWhiteSpace(Model.Chorus))
-                            {
-                               <h6 style="text-align: center;">Chorus</h6> 
-                                @Model.Chorus <br />
-
-                                <br />
-                            }
+                            <br />
                         }
+                        @if(!string.IsNullOrWhiteSpace(Model.Chorus))
+                        {
+                           <h6 style="text-align: center;">Chorus</h6> 
+                            @Model.Chorus <br />
+
+                            <br />
+                        }
+                    }
                     </p>
                 </ChildContent>
             </CardContent>
@@ -51,36 +51,36 @@
 </div>
 
 @code {
-    Hymn Model { get; set; } = new();
-    [Parameter] public string SongId { get; set; }
-    protected override async Task OnInitializedAsync()
+Hymn Model { get; set; } = new();
+[Parameter] public string SongId { get; set; }
+protected override async Task OnInitializedAsync()
+{
+    Model = await Database.GetHymn(SongId);
+    if (Model == null)
     {
-        Model = await Database.GetHymn(SongId);
-        if (Model == null)
-        {
-            Navigation.NavigateTo("/");
-        }
+        Navigation.NavigateTo("/");
     }
-    string audiotag = System.IO.Path.GetRandomFileName().Replace(".", "_");
-    bool expand, playing;
-    async Task PlayAudio()
-    {
+}
+string audiotag = System.IO.Path.GetRandomFileName().Replace(".", "_");
+bool expand, playing;
+async Task PlayAudio()
+{
 
-        if (playing)
-        {
-            await javaScript.InvokeVoidAsync("pauseAudio", audiotag);
-        }
-        else
-        {
-            await javaScript.InvokeVoidAsync("playAudio", audiotag);
-        }
-        playing = !playing;
-        StateHasChanged();
-    }
-    async Task AddToFavorites()
+    if (playing)
     {
-        await Database.AddToFavorites(Model);
+        await javaScript.InvokeVoidAsync("pauseAudio", audiotag);
     }
+    else
+    {
+        await javaScript.InvokeVoidAsync("playAudio", audiotag);
+    }
+    playing = !playing;
+    StateHasChanged();
+}
+async Task AddToFavorites()
+{
+    await Database.AddToFavorites(Model);
+}
 }
 <style>
 

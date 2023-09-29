@@ -1,6 +1,5 @@
-﻿namespace EHymns.Interfaces
+﻿namespace EHymns.Interfaces;
+
+public interface IMessageSender
 {
-    public interface IMessageSender
-    {
-    }
 }

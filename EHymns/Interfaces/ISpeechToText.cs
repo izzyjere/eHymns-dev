@@ -1,8 +1,7 @@
-﻿namespace EHymns.Interfaces
+﻿namespace EHymns.Interfaces;
+
+public interface ISpeechToText
 {
-    public interface ISpeechToText
-    {
-        void StartSpeechToText();
-        void StopSpeechToText();
-    }
+    void StartSpeechToText();
+    void StopSpeechToText();
 }

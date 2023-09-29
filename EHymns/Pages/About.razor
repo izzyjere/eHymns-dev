@@ -28,18 +28,18 @@
     </div>
 </footer>
 @code{
-    void WaMe()
-    {   
-             
-        if (deviceInfo.IsWhatsAppInstalled())
-        {
-            Navigation.NavigateTo("https://api.whatsapp.com/send?phone=260960715005");
-        }
-        else
-        {
-            ToastService.Show("WhatsApp is not installed");
-        }
+void WaMe()
+{   
+         
+    if (deviceInfo.IsWhatsAppInstalled())
+    {
+        Navigation.NavigateTo("https://api.whatsapp.com/send?phone=260960715005");
     }
+    else
+    {
+        ToastService.Show("WhatsApp is not installed");
+    }
+}
 }
 <style>
     footerge{

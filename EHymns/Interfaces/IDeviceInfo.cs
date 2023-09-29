@@ -1,7 +1,6 @@
-﻿namespace EHymns.Interfaces
+﻿namespace EHymns.Interfaces;
+
+public interface IMyDeviceInfo
 {
-    public interface IMyDeviceInfo
-    {
-        bool IsWhatsAppInstalled();
-    }
+    bool IsWhatsAppInstalled();
 }

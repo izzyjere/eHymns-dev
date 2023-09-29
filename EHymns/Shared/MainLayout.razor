@@ -251,25 +251,25 @@
 @code
 {
     SfSidebar Sidebar;
-    public string Target = ".main-content";
-    Dictionary<string, object> HtmlAttribute = new Dictionary<string, object>()
-    {
-        { "class", "default-sidebar" },
-        { "style", "min-height:100hv !important; z-index:99999; width:240px" },
+public string Target = ".main-content";
+Dictionary<string, object> HtmlAttribute = new Dictionary<string, object>()
+{
+    { "class", "default-sidebar" },
+    { "style", "min-height:100hv !important; z-index:99999; width:240px" },
 
-    };
-    public bool SidebarToggle = false;
-    public bool SidebarToggleFixed = false;
-    public void CloseNavBar()
-    {
-       if(SidebarToggle)
-        SidebarToggle = false;
-        SidebarToggleFixed = false;
-    }
-    public void ToggleNavMenu()
-    {
-        SidebarToggle = !SidebarToggle;
-        SidebarToggleFixed = !SidebarToggleFixed;
+};
+public bool SidebarToggle = false;
+public bool SidebarToggleFixed = false;
+public void CloseNavBar()
+{
+   if(SidebarToggle)
+    SidebarToggle = false;
+    SidebarToggleFixed = false;
+}
+public void ToggleNavMenu()
+{
+    SidebarToggle = !SidebarToggle;
+    SidebarToggleFixed = !SidebarToggleFixed;
 
-    }
+}
  }

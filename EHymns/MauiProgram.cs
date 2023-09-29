@@ -1,8 +1,5 @@
 ﻿using CommunityToolkit.Maui;
-
 using EHymns.Interfaces;
-
-
 using Syncfusion.Blazor;
 using Syncfusion.Licensing;
 
@@ -23,7 +20,7 @@ public static class MauiProgram
 
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddSingleton<ISpeechToText, SpeechToText>();
-        builder.Services.AddSingleton<IMyDeviceInfo, DeviceInfoImplementation>();
+        builder.Services.AddSingleton<IMyDeviceInfo, DeviceInfoImpl>();
 
 
         builder.Services.AddSyncfusionBlazor();

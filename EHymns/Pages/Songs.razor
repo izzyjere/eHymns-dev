@@ -20,8 +20,8 @@
 
     <div style="max-height:100vh; overflow:auto" class="mt-3 container">
         @foreach (var item in searchResults)
-        {
-            <div class="row mb-2">
+    {
+        <div class="row mb-2">
 
                 <SfCard ID="@item.Number">
                     <CardHeader Title="@item.Title.ToUpper()" />
@@ -38,7 +38,7 @@
                     </CardFooter>
                 </SfCard>
             </div>
-        }
+    }
 
     </div>
 }
@@ -46,15 +46,15 @@ else
 {
 
     @if ((!searchResults.Any()) && isSearching)
-    {
-        <div class="alert m-3 alert-warning alert-dismissible fade show" role="alert">
+{
+    <div class="alert m-3 alert-warning alert-dismissible fade show" role="alert">
             No results found
             <button @onclick="Refresh" type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="True">&times;</span>
             </button>
         </div><div style="min-height:600px;" class="mt-3 container">
     </div>
-    }
+}
     
 }
 @if (!isSearching && !searchResults.Any() && !viewSearchData)
@@ -123,85 +123,85 @@ else
 </style>
 @code {
 
-    List<Hymn> searchResults = new();
-    bool enable = true;
-    string searchString = "";
+List<Hymn> searchResults = new();
+bool enable = true;
+string searchString = "";
 
-    protected override async Task OnInitializedAsync()
+protected override async Task OnInitializedAsync()
+{
+    await Refresh();
+
+    MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
+       {
+           SpeechToTextFinalResultRecieved(args);
+       });
+
+    MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
     {
-        await Refresh();
+        enable = true;
+    });
 
-        MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
-           {
-               SpeechToTextFinalResultRecieved(args);
-           });
-
-        MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
-        {
-            enable = true;
-        });
-
-        MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
-        {
-            SpeechToTextFinalResultRecieved(args);
-        });
+    MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
+    {
+        SpeechToTextFinalResultRecieved(args);
+    });
+}
+void Sing(string id)
+{
+    Navigation.NavigateTo($"sing/{id}");
+}
+async Task Refresh()
+{
+    searchResults = (await Database.GetFavourites()).ToList();
+    viewSearchData = searchResults.Any();
+    isSearching = false;
+    StateHasChanged();
+}
+async Task Remove(Hymn item)
+{
+    var accept = await Application.Current.MainPage.DisplayAlert("Remove Song", "Remove this song from your favourites?", accept: "Yes", cancel: "No");
+    if (!accept)
+    {
+        return;
     }
-    void Sing(string id)
+    await Database.RemoveFromFavorites(item); await Refresh();
+}
+private void SpeechToTextFinalResultRecieved(string args)
+{
+    OnSearch(new Microsoft.AspNetCore.Components.ChangeEventArgs() { Value = args });
+    StateHasChanged();
+
+}
+void VoiceSearch()
+{
+    try
     {
-        Navigation.NavigateTo($"sing/{id}");
+        speechToText.StartSpeechToText();
     }
-    async Task Refresh()
+    catch
     {
-        searchResults = (await Database.GetFavourites()).ToList();
-        viewSearchData = searchResults.Any();
-        isSearching = false;
+
+    }
+    if (Microsoft.Maui.Devices.DeviceInfo.Platform == Microsoft.Maui.Devices.DevicePlatform.iOS)
+    {
+        enable = false;
+    }
+
+}
+bool viewSearchData, isSearching;
+async void OnSearch(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+{
+    isSearching = true;
+    var value = (string)args.Value;
+    if (string.IsNullOrWhiteSpace(value))
+    {
+        viewSearchData = false;
         StateHasChanged();
+        return;
     }
-    async Task Remove(Hymn item)
-    {
-        var accept = await Application.Current.MainPage.DisplayAlert("Remove Song", "Remove this song from your favourites?", accept: "Yes", cancel: "No");
-        if (!accept)
-        {
-            return;
-        }
-        await Database.RemoveFromFavorites(item); await Refresh();
-    }
-    private void SpeechToTextFinalResultRecieved(string args)
-    {
-        OnSearch(new Microsoft.AspNetCore.Components.ChangeEventArgs() { Value = args });
-        StateHasChanged();
-
-    }
-    void VoiceSearch()
-    {
-        try
-        {
-            speechToText.StartSpeechToText();
-        }
-        catch
-        {
-
-        }
-        if (Microsoft.Maui.Devices.DeviceInfo.Platform == Microsoft.Maui.Devices.DevicePlatform.iOS)
-        {
-            enable = false;
-        }
-
-    }
-    bool viewSearchData, isSearching;
-    async void OnSearch(Microsoft.AspNetCore.Components.ChangeEventArgs args)
-    {
-        isSearching = true;
-        var value = (string)args.Value;
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            viewSearchData = false;
-            StateHasChanged();
-            return;
-        }
-        searchResults.Clear();
-        searchResults = await Database.Search(value, true);
-        viewSearchData = searchResults.Any();
-        StateHasChanged();
-    }
+    searchResults.Clear();
+    searchResults = await Database.Search(value, true);
+    viewSearchData = searchResults.Any();
+    StateHasChanged();
+}
 }

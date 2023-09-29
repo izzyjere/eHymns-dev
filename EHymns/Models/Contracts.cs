@@ -1,11 +1,10 @@
-﻿namespace EHymns.Models
+﻿namespace EHymns.Models;
+
+public interface IEntity<TKey>
 {
-    public interface IEntity<TKey>
-    {
-        TKey Id { get; set; }
-    }
-    public abstract class Entity<TKey> : IEntity<TKey>
-    {
-        public virtual TKey Id { get; set; }
-    }
+    TKey Id { get; set; }
+}
+public abstract class Entity<TKey> : IEntity<TKey>
+{
+    public virtual TKey Id { get; set; }
 }
