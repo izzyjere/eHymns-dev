@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
-    <!--TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks-->
+    <TargetFrameworks>net7.0-android;net7.0-ios</TargetFrameworks>
+    <!--TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks-->
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-    <!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+    <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
     <OutputType>Library</OutputType>
     <RootNamespace>EHymns</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -60,12 +60,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
-    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.59" />
-    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="20.1.0.59" />
-    <PackageReference Include="Syncfusion.Blazor.Cards" Version="20.1.0.59" />
-    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="20.1.0.59" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.1.0.59" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="23.1.38" />
+    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="23.1.38" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="23.1.38" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="23.1.38" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="23.1.38" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
@@ -78,8 +78,5 @@
     <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
     <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
     <None Include="wwwroot\css\open-iconic\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 </Project>
