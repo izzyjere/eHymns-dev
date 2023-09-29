@@ -1,4 +1,9 @@
-﻿using Windows.Media.SpeechRecognition;
+﻿using CommunityToolkit.Maui.Core;
+
+using System.Diagnostics;
+
+using Windows.Media.Capture;
+using Windows.Media.SpeechRecognition;
 
 namespace EHymns.Interfaces;
 
@@ -6,6 +11,24 @@ public class SpeechToText : ISpeechToText
 {
     private SpeechRecognizer speechRecognizer; // The speech recognizer object
 
+    private IToast toast;
+
+    async Task RequestMicrophoneAndSpeechRecognitionPermissions()
+    {
+        MediaCaptureInitializationSettings settings = new MediaCaptureInitializationSettings();
+        settings.StreamingCaptureMode = StreamingCaptureMode.Audio;
+        var capture = new MediaCapture();
+
+        try
+        {
+            await capture.InitializeAsync(settings);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // Handle permission denial here.
+            await Launcher.OpenAsync(new Uri("ms-settings:privacy-microphone"));
+        }
+    }
     public void StartSpeechToText()
     {
         InitializeSpeechRecognizer(); // Initialize the speech recognizer
@@ -14,6 +37,7 @@ public class SpeechToText : ISpeechToText
 
     private async void InitializeSpeechRecognizer()
     {
+        await RequestMicrophoneAndSpeechRecognitionPermissions();
         // Create an instance of SpeechRecognizer
         speechRecognizer = new SpeechRecognizer();
 
@@ -30,8 +54,17 @@ public class SpeechToText : ISpeechToText
 
     private async void StartListening()
     {
-        // Start the continuous recognition session
-        await speechRecognizer.ContinuousRecognitionSession.StartAsync();
+        try
+        {
+            // Start the continuous recognition session
+           await speechRecognizer.ContinuousRecognitionSession.StartAsync();
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message + e.StackTrace);
+            ToastService.Show("failed to launch speech services.", true);
+        }
+
     }
 
     public async void StopSpeechToText()

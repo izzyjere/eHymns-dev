@@ -144,6 +144,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        await Permissions.RequestAsync<Permissions.Microphone>();
+        await  Permissions.RequestAsync<Permissions.Speech>();
         await Refresh();
         language = await SecureStorage.GetAsync("language");
 
